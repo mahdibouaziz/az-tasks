@@ -1,5 +1,7 @@
 #!/bin/bash
 
+################# Input Validation #################
+
 # --- Parse direct environment argument ---
 ENVIRONMENT="$1"
 APPTYPE="$2"  # webapp or functionapp
@@ -23,14 +25,16 @@ fi
 echo "Target environment: $ENVIRONMENT"
 echo "Target type: $APPTYPE"
 
-# --- Set the prefix based on type ---
+################# Set Prefix Based on Type #################
+
 if [ "$APPTYPE" = "webapp" ]; then
   PREFIX="app-$ENVIRONMENT"
 else
   PREFIX="func-$ENVIRONMENT"
 fi
 
-# --- Fetch apps starting with correct prefix ---
+################# Fetch Applications with correct prefix #################
+
 apps=$(az $APPTYPE list --query "[?starts_with(name, '$PREFIX')].{Name:name, ResourceGroup:resourceGroup}" -o tsv)
 
 if [ -z "$apps" ]; then
@@ -38,7 +42,8 @@ if [ -z "$apps" ]; then
     exit 0
 fi
 
-# --- Process each app ---
+################# Process Each Application #################
+
 while IFS=$'\t' read -r appName resourceGroup
 do
     echo "Processing $APPTYPE: $appName in Resource Group: $resourceGroup"
