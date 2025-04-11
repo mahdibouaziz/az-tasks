@@ -46,6 +46,10 @@ fi
 
 while IFS=$'\t' read -r appName resourceGroup
 do
+    # Remove possible carriage returns
+    appName=$(echo "$appName" | tr -d '\r')
+    resourceGroup=$(echo "$resourceGroup" | tr -d '\r')
+    
     echo "Processing $APPTYPE: $appName in Resource Group: $resourceGroup"
 
     # Delete the APPINSIGHTS_INSTRUMENTATIONKEY
