@@ -28,6 +28,7 @@ do
 
   echo "resource group: $reresourceGroup"
   echo "storage accunt: $storageAccount"
+  echo "--------------------------------------"
 
 done
 
