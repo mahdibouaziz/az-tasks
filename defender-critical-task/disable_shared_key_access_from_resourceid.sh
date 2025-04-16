@@ -37,7 +37,8 @@ do
     --name "$storageAccount" \
     --resource-group "$resourceGroup" \
     --allow-shared-key-access false \
-    --only-show-errors
+    --only-show-errors > /dev/null
+
   
   if [[ $? -eq 0 ]]; then
     echo "Success: Shared key access disabled for '$storageAccount'"
