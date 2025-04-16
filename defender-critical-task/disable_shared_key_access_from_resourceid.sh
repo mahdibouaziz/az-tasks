@@ -22,13 +22,12 @@ do
     continue
   fi
 
-  # Extract resource group and storage account name from resourceId
-  resourceGroup=$(echo "$resourceId" | awk -F"/" '{for (i=1; i<=NF; i++) if ($i=="resourcegroups") print $(i+1)}')
-  storageAccount=$(echo "$resourceId" | awk -F"/" '{for (i=1; i<=NF; i++) if ($i=="storageaccounts") print $(i+1)}')
+  # Extract values (case-insensitive)
+  resourceGroup=$(echo "$resourceId" | awk -F"/" '{for (i=1; i<=NF; i++) if (tolower($i)=="resourcegroups") print $(i+1)}')
+  storageAccount=$(echo "$resourceId" | awk -F"/" '{for (i=1; i<=NF; i++) if (tolower($i)=="storageaccounts") print $(i+1)}')
 
-  echo "resource group: $reresourceGroup"
-  echo "storage accunt: $storageAccount"
+  echo "Resource Group : $resourceGroup"
+  echo "Storage Account: $storageAccount"
   echo "--------------------------------------"
 
 done
-
