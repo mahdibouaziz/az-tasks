@@ -11,7 +11,7 @@ fi
 echo "Starting shared key access remediation using resourceId..."
 
 # Skip header and process each line
-tail -n +2 "$CSV_FILE" | while IFS= read -r resourceId
+tail -n +2 "$CSV_FILE" | cut -d',' -f1 | while IFS= read -r resourceId
 do
   # Clean whitespace
   resourceId=$(echo "$resourceId" | xargs)
