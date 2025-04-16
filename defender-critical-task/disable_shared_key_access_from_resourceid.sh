@@ -29,14 +29,14 @@ do
   # echo "Resource Group : $resourceGroup"
   # echo "Storage Account: $storageAccount"
   # echo "--------------------------------------"
-  
+
   echo "Updating storage account: $storageAccount (resource group: $resourceGroup)"
 
   # Execute the remediation command
   az storage account update \
     --name "$storageAccount" \
     --resource-group "$resourceGroup" \
-    --enable-shared-key-access false \
+    --allow-shared-key-access false \
     --only-show-errors
   
   if [[ $? -eq 0 ]]; then
